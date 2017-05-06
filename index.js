@@ -5,22 +5,26 @@
 var express = require('express')
 var sql = require('mysql')
 var app = express()
+var bodyParser = require('body-parser');
+var cors = require('cors');
 
-app.use(express.bodyParser());
+app.use(bodyParser.urlencoded({extended: true})); 
+
+app.use(bodyParser.json());
+
+app.use(cors());
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
 })
 
 app.post('/parkingspot', function (req, res) {
-
     /**
     Following code should return the closest carpark at a specific time.
     */
-    var inLatitude = parseFloat(req['lat']);
-    var inLongitude = parseFloat(req['lng']);
-
-    console.log(req.body);
+	console.log(req.body);
+    var inLatitude = parseFloat(req.body['lat']);
+    var inLongitude = parseFloat(req.body['lng']);
 
     var config = {
         host: 'rent-out-your-garage-angel-hack-2017.c68iuepecghy.ap-southeast-2.rds.amazonaws.com',
@@ -63,6 +67,8 @@ app.post('/parkingspot', function (req, res) {
         }
 
         var obj = {lat1: closestLat1, lng1: closestLong1, lat2: closestLat2, lng2: closestLong2, time_limit: time_limit};
+        res.set('Content-Type', 'application/json');
+        res.set('Access-Control-Allow-Origin', '*');
         res.send(obj);
 
     });
@@ -72,8 +78,7 @@ app.post('/parkingspot', function (req, res) {
 
 })
 
-app.listen(3000, function () {
-
-    console.log('Example app listening on port 3000!')
+app.listen(8080, function () {
+    console.log('Example app listening on port 8080!')
 
 })
