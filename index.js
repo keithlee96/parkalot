@@ -47,8 +47,8 @@ app.post('/parkingspot', function (req, res) {
 
         for(var row in rows){
 
-            var latitiude = (parseFloat(rows[row].latitude1) + parseFloat(rows[row].longitude1)) / 2;
-            var longitude = (parseFloat(rows[row].longitude2) + parseFloat(rows[row].latitude2)) / 2;
+            var longitude = (parseFloat(rows[row].latitude1) + parseFloat(rows[row].latitude2) / 2;
+            var latitiude = -(parseFloat(rows[row].longitude2) + parseFloat(rows[row].longitude1)) / 2;
             var dist = (inLatitude - latitiude) * (inLatitude - latitiude) + (inLongitude - longitude) * (inLongitude - longitude);
             if(dist < closest){
                 closest = dist;
