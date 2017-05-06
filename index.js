@@ -6,6 +6,8 @@ var express = require('express')
 var sql = require('mysql')
 var app = express()
 
+app.use(express.bodyParser());
+
 app.get('/', function (req, res) {
     res.send('Hello World!')
 })
@@ -17,6 +19,8 @@ app.post('/parkingspot', function (req, res) {
     */
     var inLatitude = parseFloat(req['lat']);
     var inLongitude = parseFloat(req['lng']);
+
+    console.log(req.body);
 
     var config = {
         host: 'rent-out-your-garage-angel-hack-2017.c68iuepecghy.ap-southeast-2.rds.amazonaws.com',
