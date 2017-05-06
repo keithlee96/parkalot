@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
     res.send('Hello World!')
 })
 
-app.get('/parkingspot', function (req, res) {
+app.post('/parkingspot', function (req, res) {
 
     /**
     Following code should return the closest carpark at a specific time.
