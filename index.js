@@ -27,7 +27,7 @@ app.post('/parkingspot', function (req, res) {
     var connection = sql.createConnection(config);
     connection.connect();
 
-    var query = "SELECT * from parking_data WHERE(starttime <= CURTIME() AND endtime >= CURTIME());";
+    var query = "SELECT latitude1, longitude1, latitude2, longitude2, time_limit from parking_data WHERE(starttime <= CURTIME() AND endtime >= CURTIME());";
 
     connection.query(query, function(err, rows){
         if(err) throw err;
