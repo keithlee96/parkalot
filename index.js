@@ -15,8 +15,8 @@ app.post('/parkingspot', function (req, res) {
     /**
     Following code should return the closest carpark at a specific time.
     */
-    var inLatitude = req['lat'];
-    var inLongitude = req['lng'];
+    var inLatitude = parseFloat(req['lat']);
+    var inLongitude = parseFloat(req['lng']);
 
     var config = {
         host: 'rent-out-your-garage-angel-hack-2017.c68iuepecghy.ap-southeast-2.rds.amazonaws.com',
