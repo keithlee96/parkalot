@@ -2,11 +2,14 @@
  * Created by Keith Lee on 6/05/2017.
  */
 
+require('dotenv').config();
 var express = require('express')
 var sql = require('mysql')
-var app = express()
 var bodyParser = require('body-parser');
 var cors = require('cors');
+
+var app = express()
+
 
 app.use(bodyParser.urlencoded({extended: true})); 
 
@@ -28,8 +31,8 @@ app.post('/parkingspot', function (req, res) {
 
     var config = {
         host: 'rent-out-your-garage-angel-hack-2017.c68iuepecghy.ap-southeast-2.rds.amazonaws.com',
-        user: 'root',
-        password: 'rootasd123',
+        user: process.env.USER,
+        password: process.env.PASSWORD,
         database: 'test'
     };
     var connection = sql.createConnection(config);
